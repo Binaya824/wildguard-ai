@@ -587,11 +587,21 @@ async def get_statistics(
 
     # Top animals (filtered)
     animals_pipeline = [
-        {"$match": base_query},
-        {"$unwind": {"path": "$extracted_animals", "preserveNullAndEmptyArrays": True}},
-        {"$group": {"_id": "$extracted_animals", "count": {"$sum": 1}}},
-        {"$sort": {"count": -1}}
-    ]
+    {"$match": base_query},
+
+    {"$unwind": {
+        "path": "$extracted_animals",
+        "preserveNullAndEmptyArrays": False   # drop empty arrays
+    }},
+
+    {"$group": {
+        "_id": "$extracted_animals",
+        "count": {"$sum": 1}
+    }},
+
+    {"$sort": {"count": -1}}
+]
+
     
     animals_result = await collection.aggregate(animals_pipeline).to_list(None)
     top_animals = [{"animal": item["_id"], "count": item["count"]} for item in animals_result]
