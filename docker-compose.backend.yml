@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: wildguard_backend
+    ports:
+      - "8022:8022"
+    restart: always

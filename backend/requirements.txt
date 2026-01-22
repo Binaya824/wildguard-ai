@@ -1,0 +1,37 @@
+
+pandas==2.2.0
+openpyxl==3.1.2
+
+# Backend Dependencies (FastAPI)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart==0.0.12
+pydantic==2.12.5
+
+# Database (MongoDB)
+pymongo==4.6.1
+motor==3.3.2
+openai==1.74.0
+gunicorn==23.0.0
+
+
+# LangChain and LangGraph for AI agents
+typing-extensions==4.15.0
+
+# Vector Store (for semantic search)
+faiss-cpu==1.8.0
+
+
+# Utilities
+python-dotenv==1.0.1
+requests==2.31.0
+httpx==0.26.0
+
+# Excel/CSV Processing
+xlrd==2.0.1
+openpyxl==3.1.2
+python-dateutil==2.8.2
+
+# Development Tools (optional)
+pytest==8.0.0
+httpx==0.26.0
