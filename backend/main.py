@@ -727,9 +727,11 @@ async def batch_create_incidents(incidents: List[IncidentCreate]):
     failed_count = 0
     errors = []
     
+    # print("incidents" , incidents)
+    
     for idx, incident_data in enumerate(incidents):
         try:
-            incident_dict = incident_data.animals_resultdict()
+            incident_dict = incident_data.model_dump()
             incident_dict["created_at"] = datetime.utcnow()
             incident_dict["updated_at"] = datetime.utcnow()
             
@@ -742,7 +744,6 @@ async def batch_create_incidents(incidents: List[IncidentCreate]):
             assigned_tags = assign_tags_to_incident(incident_dict)
             if assigned_tags:
                 incident_dict["tags"] = assigned_tags
-
             # Insert
             await collection.insert_one(incident_dict)
             inserted_count += 1
